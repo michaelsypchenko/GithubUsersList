@@ -6,14 +6,14 @@ import ApiRoutes from './../constants/API.routes';
 const { get } = ApiActions;
 const usersPerPage = 20;
 
-const getUsers = () => (dispatch, getState) => {
-  const pageIndex = getState().pagination.pageIndex;
+const getUsers = pageNumber => dispatch => {
+  const pageIndex = pageNumber || 0;
 
   get(
       actionTypes.GET_CURRENT_USERS_LIST,
       {
           route: ApiRoutes.USERS.LIST(
-              qs.stringify({per_page: usersPerPage, since: (pageIndex + 1) * usersPerPage}
+              qs.stringify({per_page: usersPerPage, since: pageIndex * usersPerPage}
           ))
       }
    )(dispatch)
