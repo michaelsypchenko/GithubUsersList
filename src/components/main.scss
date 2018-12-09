@@ -1,0 +1,19 @@
+.app-root {
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-bottom: solid black 1px;
+  padding-bottom: 10px;
+
+  .app-name{
+    background: aliceblue;
+  }
+}
+//COMMON STYLES @TODO MOVE APART FROM ROOT SCSS
+.centred-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a:hover {
+  text-decoration: none;
+}
