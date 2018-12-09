@@ -2,9 +2,9 @@ import userActions from './Users.action';
 
 //actions
 const next = () => (dispatch, getState) =>{
-   dispatch({
+    dispatch({
         type: actionTypes.NEXT_PAGE
-  });
+    });
     userActions.getUsers()(dispatch, getState);
 };
 
