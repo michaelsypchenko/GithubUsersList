@@ -13,7 +13,7 @@ const getUsers = () => (dispatch, getState) => {
       actionTypes.GET_CURRENT_USERS_LIST,
       {
           route: ApiRoutes.USERS.LIST(
-              qs.stringify({per_page: usersPerPage, since: (pageIndex + 1) * usersPerPage}
+              qs.stringify({per_page: usersPerPage, since: pageIndex * usersPerPage}
           ))
       }
    )(dispatch)
