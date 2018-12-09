@@ -1,4 +1,5 @@
-To start locally:
-# npm i
-# npm start
-# port 3000
+### Quick Start ###
+
+* install modules  - npm i
+* run dev server  - npm start
+* runs on http://localhost:3000

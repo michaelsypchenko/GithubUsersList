@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "jquery": "^2.2.1",
+    "jquery": ">=3.0.0",
     "query-string": "^6.2.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
