@@ -22,13 +22,14 @@ const get = (asyncActionType, request) => dispatch => {
             return res;
         })
         .catch(err => {
+
             dispatch({
                 type: actionTypes.GET_REQUEST_DONE,
                 payload: asyncActionType
-        });
+            });
 
-        throw new Error(err);
-    });
+            throw new Error(err);
+        });
 };
 
 export default { get };
