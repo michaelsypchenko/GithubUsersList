@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import paginationActions from '../../actions/Pagination.actions';
 import usersActions, {actionTypes as userActionTypes} from '../../actions/Users.action';
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
+// import qs from 'querystring';
 import './main.scss';
 
 class List extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            page: 0
+        }
+    }
     componentDidMount() {
-        this.props.getUsers();
+        browserHistory.listen(event => {
+            this.setState({page: parseInt(event.query.page || 0)});
+            this.props.getUsers(parseInt(event.query.page || 0))
+        });
+    }
+
+    componentWillUnmount() {
+        browserHistory.listen(() => {});
     }
 
     render() {
         const { usersList, is_GetUsersRequestPending } = this.props.users;
-        const { back, next} = this.props;
 
         return (
             <div>
@@ -23,8 +35,14 @@ class List extends Component {
                 </div>
             </div>
             <div className='row navigation-buttons_container'>
-                <button onClick={ back }> Previous page </button>
-                <button onClick={ next }> Next page </button>
+                { (this.state.page || null) && (
+                    <button onClick={ () => browserHistory.push({pathname: '/', search: `?page=${parseInt(this.state.page) - 1}`}) }>
+                        Previous page
+                    </button>
+                )}
+                <button onClick={ () => browserHistory.push({pathname: '/', search: `?page=${parseInt(this.state.page) + 1}`}) }>
+                    Next page
+                </button>
             </div>
             <div className='row user-item' >
                 <div className='col-sm-4'>
@@ -74,5 +92,5 @@ export default connect(
         users,
         is_GetUsersRequestPending: api.pending_actions.includes(userActionTypes.GET_CURRENT_USERS_LIST)
     }),
-    dispatch => bindActionCreators({...paginationActions, ...usersActions}, dispatch)
+    dispatch => bindActionCreators(usersActions, dispatch)
 )(List);

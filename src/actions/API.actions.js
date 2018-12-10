@@ -36,7 +36,7 @@ export default { get };
 
 //action types
 export const actionTypes = {
- GET_REQUEST_PENDING:'GET_REQUEST_PENDING',
- GET_REQUEST_DONE:'GET_REQUEST_DONE'
+    GET_REQUEST_PENDING:'GET_REQUEST_PENDING',
+    GET_REQUEST_DONE:'GET_REQUEST_DONE'
 };
 
