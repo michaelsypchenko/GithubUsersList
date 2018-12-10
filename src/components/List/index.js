@@ -20,6 +20,10 @@ class List extends Component {
         });
     }
 
+    componentWillUnmount() {
+        browserHistory.listen(() => {});
+    }
+
     render() {
         const { usersList, is_GetUsersRequestPending } = this.props.users;
 
